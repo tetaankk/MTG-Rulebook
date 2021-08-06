@@ -7,13 +7,13 @@ export default function Rules({ subChapter }) {
         {subChapter.sectionKey}. {subChapter.sectionContent}
       </h2>
       {subChapter.rules.map((rule) => (
-        <div className="rule">
-          <h4 key={rule.ruleKey}>
+        <div key={rule.ruleKey} className="rule">
+          <h4 >
             {rule.ruleKey}. <span>{rule.ruleContent}</span>
           </h4>
           {rule.subRules.map((subRule) => (
-            <div className="subRule">
-              <p key={subRule.subRuleKey}>
+            <div key={subRule.subRuleKey} className="subRule">
+              <p >
                 {subRule.subRuleKey}. <span>{subRule.subRuleContent}</span>
               </p>
             </div>

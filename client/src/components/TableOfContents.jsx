@@ -12,6 +12,7 @@ export default function TableOfContents(props) {
       {showSubChapters &&
         props.chapter.sections.map((section) => (
           <h5
+            key={section.sectionKey}
             onClick={() => props.changeSubChapter(section)}
             style={{
               color:

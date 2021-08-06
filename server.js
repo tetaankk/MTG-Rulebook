@@ -107,11 +107,6 @@ app.get("/rules", (req, res) => {
         }
       }
 
-      //console.log(ruleBookChapters);
-      //console.log(ruleBookChapterSections);
-      //console.log(ruleBookRules);
-      //console.log(ruleBookSubRules);
-
       res.header("Content-Type", "text/plain");
       res.status(200).send(ruleBookChapters);
     });

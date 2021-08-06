@@ -5,7 +5,7 @@ export default function Header({ text }) {
 
   for (let letter in text) {
     newHeader.push(
-      <span className="header-letter">{text.charAt(letter)}</span>
+      <span key={letter}className="header-letter">{text.charAt(letter)}</span>
     );
   }
   return <h2>{newHeader}</h2>;

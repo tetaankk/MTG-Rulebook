@@ -36,8 +36,8 @@ function App() {
         <div className="tableOfContents">
           {rules.length > 0 &&
             rules.map((chapter) => (
-              <ul>
-                <li key={chapter.chapterKey}>
+              <ul key={chapter.chapterKey}>
+                <li>
                   <TableOfContents
                     chapter={chapter}
                     changeSubChapter={(subChapter) => {

@@ -13,7 +13,7 @@ export default function SearchFunction({ rules, toSearch }) {
           {searchResults.length} results found for "{toSearch}"
         </h2>
         {searchResults.map((rule) => (
-          <div>
+          <div key={rule.ruleKey}>
             <h4>
               {rule.ruleKey}. {rule.ruleContent}
             </h4>
@@ -58,6 +58,7 @@ export default function SearchFunction({ rules, toSearch }) {
         : setNoResults(true);
     }, 500);
     return () => clearTimeout(delayedSearch);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toSearch]);
 
   return (
