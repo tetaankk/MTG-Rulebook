@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500&display=swap');
+
+.App {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  color: white;
+  min-height: 110vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .ruleBook{
+    display: flex;
+    width: 90em;
+    flex-direction: row;
+    margin: 1rem auto;
+    flex: 1;
+
+    .tableOfContents{
+      flex: 1;
+      text-align: left;
+      padding: 0.5em;
+      cursor: pointer;
+      height: fit-content;
+      position: sticky;
+      font-size: 1.5em;
+
+      h4{
+        margin: 0 0 1rem 0;
+      }
+
+      h5{
+        margin: 0 0 0 2rem;
+      }
+      
+      ul{        
+        text-decoration: none;
+        list-style: none;
+
+        li{
+          transition: all 0.1s ease;
+
+          h4:hover, h5:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .rules{
+      border-left: 1px solid orange;
+      flex: 3;
+      padding: 0.5em;
+      text-align: left;
+
+      h2{
+        text-align: center;
+        margin: 3rem 0 3rem 0;
+      }
+
+      .rule{
+        margin: 0 0 0 1rem;
+
+        h3{
+          text-align: center;
+        }
+
+        .subRule{
+          margin: 0 0 0 2rem;
+        }
+      }
+
+      .loadingIcon{
+        -webkit-animation: spin 2s linear infinite;
+        animation: spin 2s linear infinite;
+        font-size: 4em;
+        text-align: center;
+        margin: 0 auto;
+      }
+    }
+  }
+
+    .searchBar{
+      width: 100%;
+      background-color: floralwhite;
+      color: black;
+      border: none;
+      border-radius: 2px;
+      display: flex;
+      
+      .searchBar-input{
+        padding: 0.7em;
+        font-size: 1em;
+        background-color: transparent;
+        border: none;
+        width: 90%;
+
+        &:focus{
+          outline: none;
+        }
+      }
+
+      .searchBar-button{
+        background-color: transparent;
+        border: none;
+        color: gray;
+        margin: 0px 0px 0px auto;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
+        &:hover{
+          transition: all 0.2s ease;
+          color: orange;
+        }
+      }
+    }
+
+    h2{
+      font-weight: 300;
+      font-size: 2.5em;
+
+      .header-letter{
+        display: inline-block;
+        transition: all 0.3s ease-in-out;
+
+        &:hover{
+          transition: all 0.2s ease-in-out;
+          color: orange;
+          transform: translateY(-1px);
+        }
+      }
+    }
+
+    .footer{
+      background-color: gray;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      margin: 10em 0 0 0;
+      height: fit-content;
+      font-size: 0.8rem;
+
+      p{
+        margin: 0;
+      }
+    }
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
