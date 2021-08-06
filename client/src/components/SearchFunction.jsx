@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "./Header";
 import LoopIcon from "@material-ui/icons/Loop";
 
 export default function SearchFunction({ rules, toSearch }) {
@@ -9,9 +10,7 @@ export default function SearchFunction({ rules, toSearch }) {
   const printResults = () => {
     return (
       <div>
-        <h2>
-          {searchResults.length} results found for "{toSearch}"
-        </h2>
+        <Header text={searchResults.length+"\xa0results\xa0found\xa0for\xa0''"+toSearch+"''"} />
         {searchResults.map((rule) => (
           <div key={rule.ruleKey}>
             <h4>
