@@ -11,7 +11,7 @@
 
   .ruleBook{
     display: flex;
-    width: 90em;
+    width: 95%;
     flex-direction: row;
     margin: 1rem auto;
     flex: 1;
@@ -23,7 +23,7 @@
       cursor: pointer;
       height: fit-content;
       position: sticky;
-      font-size: 1.5em;
+      font-size: calc(12px + 0.5vw);
 
       h4{
         margin: 0 0 1rem 0;
@@ -52,6 +52,8 @@
       flex: 3;
       padding: 0.5em;
       text-align: left;
+      max-width: 100%;
+      min-height: 80vh;
 
       h2{
         text-align: center;
@@ -81,7 +83,7 @@
   }
 
     .searchBar{
-      width: 100%;
+      width: 90%;
       background-color: floralwhite;
       color: black;
       border: none;
@@ -138,8 +140,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      width: 100%;
-      margin: 10em 0 0 0;
+      width: 100vw;
+      margin: 20vh 0 0 0;
       height: fit-content;
       font-size: 0.8rem;
 
@@ -157,4 +159,24 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 1000px){
+  .App{
+    .ruleBook{
+      flex-direction: column;
+
+      .rules{
+        border: none;
+
+        h2{
+          font-size: calc(12px + 0.6vw);
+        }
+      }
+    }
+    h2{
+      margin: 0;
+      font-size: calc(16px + 0.6vw);
+    }
+  }
 }
