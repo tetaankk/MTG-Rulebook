@@ -29,7 +29,7 @@ export default function SearchFunction({ rules, toSearch }) {
     setIsLoading(true);
     const delayedSearch = setTimeout(() => {
       rules.forEach((chapter) => {
-        chapter.sections.forEach((subChapter) => {
+        chapter.subChapters.forEach((subChapter) => {
           subChapter.rules.forEach((rule) => {
             if (
               rule.ruleContent.toLowerCase().includes(toSearch.toLowerCase())
