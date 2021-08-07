@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/rules")
+      .get("https://magicrulebook.herokuapp.com/rules")
       .then((res) => setRules(res.data))
       .catch((error) => console.log(error));
   }, []);
