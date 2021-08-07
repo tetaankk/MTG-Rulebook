@@ -1,29 +1,25 @@
-import React, { useState } from "react";
+import TableOfContentsChapters from './TableOfContentsChapters';
 
 export default function TableOfContents(props) {
-  const [showSubChapters, setShowSubChapters] = useState(false);
 
-  return (
-    <div>
-      <h4 onClick={() => setShowSubChapters(!showSubChapters)}>
-        {showSubChapters ? "- " : "+"} {props.chapter.chapterKey}.{" "}
-        <span>{props.chapter.chapterContent}</span>
-      </h4>
-      {showSubChapters &&
-        props.chapter.subChapters.map((subChapter) => (
-          <h5
-            key={subChapter.subChapterKey}
-            onClick={() => props.changeSubChapter(subChapter)}
-            style={{
-              color:
-                props.subChapter === subChapter && props.toSearch === ""
-                  ? "orange"
-                  : "inherit",
-            }}
-          >
-            {subChapter.subChapterKey}{subChapter.subChapterContent}
-          </h5>
-        ))}
-    </div>
-  );
+    return (
+        <div className="tableOfContents">
+        {props.rules.length > 0 &&
+          props.rules.map((chapter) => (
+            <ul key={chapter.chapterKey}>
+              <li>
+                <TableOfContentsChapters
+                    chapter={chapter}
+                    currentSubChapter={props.currentSubChapter}
+                    handleReset={props.handleReset}
+                    changeSubChapter={(subChapter) => {
+                      props.handleSubChapterChange(subChapter);
+                      props.handleEmptySearch();
+                    }}
+                />
+              </li>
+            </ul>
+          ))}
+      </div>
+    )
 }

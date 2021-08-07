@@ -10,8 +10,8 @@ import Footer from "./components/Footer";
 
 function App() {
   const [rules, setRules] = useState([]);
-  const [subChapter, setSubChapter] = useState();
   const [toSearch, setToSearch] = useState("");
+  const [currentSubChapter, setCurrentSubChapter] = useState();
 
   useEffect(() => {
     axios
@@ -20,37 +20,34 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  const handleSearch = (e) => {
-    setToSearch(e.target.value);
+  const handleSearch = (event) => {
+    setToSearch(event.target.value);
   };
 
+  const handleEmptySearch = (event) => {
+    setToSearch("");
+  }
+  
   const handleReset = (event) => {
     event.preventDefault();
     setToSearch("");
   };
 
+  const handleSubChapterChange = (subChapter) => {
+    setCurrentSubChapter(subChapter);
+    setToSearch("");
+  }
+
   return (
     <div className="App">
       <Header text="Rulebook&nbsp;for&nbsp;Magic:&nbsp;The&nbsp;Gathering" />
       <div className="ruleBook">
-        <div className="tableOfContents">
-          {rules.length > 0 &&
-            rules.map((chapter) => (
-              <ul key={chapter.chapterKey}>
-                <li>
-                  <TableOfContents
-                    chapter={chapter}
-                    changeSubChapter={(subChapter) => {
-                      setSubChapter(subChapter);
-                      setToSearch("");
-                    }}
-                    subChapter={subChapter}
-                    toSearch={toSearch}
-                  />
-                </li>
-              </ul>
-            ))}
-        </div>
+        <TableOfContents 
+          rules={rules} 
+          handleEmptySearch={handleEmptySearch} 
+          handleSubChapterChange={handleSubChapterChange} 
+          currentSubChapter={currentSubChapter} 
+        />
         <div className="rules">
           <SearchBar
             toSearch={toSearch}
@@ -60,7 +57,7 @@ function App() {
           {toSearch ? (
             <SearchFunction rules={rules} toSearch={toSearch} />
           ) : (
-            subChapter && <Rules subChapter={subChapter} />
+            currentSubChapter && <Rules subChapter={currentSubChapter} />
           )}
         </div>
       </div>

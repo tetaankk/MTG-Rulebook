@@ -12,11 +12,9 @@ export default function SearchFunction({ rules, toSearch }) {
       <div>
         <Header text={searchResults.length+"\xa0results\xa0found\xa0for\xa0''"+toSearch+"''"} />
         {searchResults.map((rule) => (
-          <div key={rule.ruleKey}>
-            <h4>
+            <p key={rule.ruleKey}>
               {rule.ruleKey}. {rule.ruleContent}
-            </h4>
-          </div>
+            </p>
         ))}
       </div>
     );
