@@ -10,18 +10,18 @@ export default function TableOfContents(props) {
         <span>{props.chapter.chapterContent}</span>
       </h4>
       {showSubChapters &&
-        props.chapter.sections.map((section) => (
+        props.chapter.subChapters.map((subChapter) => (
           <h5
-            key={section.sectionKey}
-            onClick={() => props.changeSubChapter(section)}
+            key={subChapter.subChapterKey}
+            onClick={() => props.changeSubChapter(subChapter)}
             style={{
               color:
-                props.subChapter === section && props.toSearch === ""
+                props.subChapter === subChapter && props.toSearch === ""
                   ? "orange"
                   : "inherit",
             }}
           >
-            {section.sectionKey}. {section.sectionContent}
+            {subChapter.subChapterKey}{subChapter.subChapterContent}
           </h5>
         ))}
     </div>

@@ -3,18 +3,18 @@ import React from "react";
 export default function Rules({ subChapter }) {
   return (
     <div>
-      <h2>{subChapter.sectionKey+". "+subChapter.sectionContent}</h2>
+      <h2>{subChapter.subChapterKey+subChapter.subChapterContent}</h2>
       {subChapter.rules.map((rule) => (
         <div key={rule.ruleKey} className="rule">
-          <h4 >
+          <p>
             {rule.ruleKey}. <span>{rule.ruleContent}</span>
-          </h4>
+          </p>
           {rule.subRules.map((subRule) => (
-            <div key={subRule.subRuleKey} className="subRule">
-              <p >
+            <ul key={subRule.subRuleKey} className="subRule">
+              <li>
                 {subRule.subRuleKey}. <span>{subRule.subRuleContent}</span>
-              </p>
-            </div>
+              </li>
+            </ul>
           ))}
         </div>
       ))}
