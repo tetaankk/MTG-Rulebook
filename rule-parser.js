@@ -1,10 +1,9 @@
 const ruleParser = (rulebody) => {
-
-    const rawRules = rulebody
-    .substring(
+  const rawRules = rulebody
+    /*   .substring(
       rulebody.lastIndexOf("1. Game Concepts"),
       rulebody.lastIndexOf("Glossary")
-    )
+    ) */
     .replace(/\r/g, "")
     .split("\n")
     .filter(Boolean);
@@ -16,68 +15,86 @@ const ruleParser = (rulebody) => {
 
   const parseChapter = (line) => {
     return {
-      chapterKey: line.substring(0,1),
-      chapterContent: line.substring(3),
+      chapterKey: line.substring(0, line.indexOf(" ")),
+      chapterContent: line.substring(line.indexOf(" ")).trim(),
       subChapters: [],
-    }
-  }
+    };
+  };
 
   const parseSubChapter = (line) => {
     return {
-      subChapterKey: line.substring(0,3),
-      subChapterContent: line.substring(3),
+      subChapterKey: line.substring(0, line.indexOf(" ")),
+      subChapterContent: line.substring(line.indexOf(" ")).trim(),
       rules: [],
-    }
-  }
+    };
+  };
 
   const parseRule = (line) => {
     return {
-      ruleKey: line.substring(0,5),
-      ruleContent: line.substring(6).trim(),
+      //ruleKey: line.substring(0, 5),
+      ruleKey: line.substring(0, line.indexOf(" ")),
+      ruleContent: line.substring(line.indexOf(" ")).trim(),
       subRules: [],
-    }
-  }
+    };
+  };
 
   const parseSubRule = (line) => {
     return {
-      subRuleKey: line.substring(0,6),
-      subRuleContent: line.substring(7).trim(),
-    }
-  }
+      subRuleKey: line.substring(0, line.indexOf(" ")),
+      subRuleContent: line.substring(line.indexOf(" ")).trim(),
+    };
+  };
 
-  const chapters = rawRules.filter(isChapter).map(parseChapter);
+  /*   const chapters = Array.from(
+    rawRules
+      .filter(isChapter)
+      .map(parseChapter)
+      .reduce((map, obj) => map.set(obj.chapterKey, obj), new Map())
+      .values()
+  ); */
+  const chapters = rawRules
+    .filter(isChapter)
+    .map(parseChapter)
+    .filter(function ({ chapterKey }) {
+      return !this.has(chapterKey) && this.add(chapterKey);
+    }, new Set());
   const subChapters = rawRules.filter(isSubChapter).map(parseSubChapter);
   const rules = rawRules.filter(isRule).map(parseRule);
   const subRules = rawRules.filter(isSubRule).map(parseSubRule);
 
+  console.log(chapters);
+  //console.log(subChapters);
+  //console.log(rules);
+  //console.log(subRules);
+
   const matchSubRuleToRule = (rule) => (subRule) => {
-    return subRule.subRuleKey.substring(0,5) === rule.ruleKey;
-  }
+    return subRule.subRuleKey.substring(0, 5) === rule.ruleKey;
+  };
 
   const matchRuleToSubChapter = (subChapter) => (rule) => {
-    return rule.ruleKey.substring(0,3) === subChapter.subChapterKey;
-  }
+    return rule.ruleKey.substring(0, 3) === subChapter.subChapterKey;
+  };
 
   const matchSubChapterToChapter = (chapter) => (subChapter) => {
-    return subChapter.subChapterKey.substring(0,1) === chapter.chapterKey;
-  }
+    return subChapter.subChapterKey.substring(0, 1) === chapter.chapterKey;
+  };
 
   const rulesWithSubRules = rules.map((rule) => ({
     ...rule,
     subRules: subRules.filter(matchSubRuleToRule(rule)),
-  }))
+  }));
 
   const subChaptersWithRules = subChapters.map((subChapter) => ({
     ...subChapter,
-    rules: rulesWithSubRules.filter(matchRuleToSubChapter(subChapter))
-  }))
+    rules: rulesWithSubRules.filter(matchRuleToSubChapter(subChapter)),
+  }));
 
   const chaptersWithSubChapters = chapters.map((chapter) => ({
     ...chapter,
-    subChapters: subChaptersWithRules.filter(matchSubChapterToChapter(chapter))
-  }))
+    subChapters: subChaptersWithRules.filter(matchSubChapterToChapter(chapter)),
+  }));
 
   return chaptersWithSubChapters;
-}
+};
 
-module.exports = {ruleParser};
+module.exports = { ruleParser };

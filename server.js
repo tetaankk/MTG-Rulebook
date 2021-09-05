@@ -2,7 +2,7 @@ const express = require("express");
 const fetch = require("node-fetch");
 const path = require("path");
 const app = express();
-const {ruleParser} = require('./rule-parser.js')
+const { ruleParser } = require("./rule-parser.js");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 
@@ -22,11 +22,11 @@ app.get("/rules", (req, res) => {
     .then((res) => res.text())
     .then((body) => {
       const rules = ruleParser(body);
+      //console.log(rules);
       res.header("Content-Type", "text/plain");
       res.status(200).send(rules);
     });
 });
-
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
