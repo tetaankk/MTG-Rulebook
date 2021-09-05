@@ -17,7 +17,7 @@ app.use(function (req, res, next) {
 
 app.get("/rules", (req, res) => {
   fetch(
-    "https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt"
+    "https://media.wizards.com/2021/downloads/MagicCompRules%2020210712.txt"
   )
     .then((res) => res.text())
     .then((body) => {

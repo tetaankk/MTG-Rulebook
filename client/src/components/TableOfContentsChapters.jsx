@@ -10,9 +10,9 @@ export default function TableOfContentsChapters(props) {
         {props.chapter.chapterKey + ". " + props.chapter.chapterContent}
       </h4>
       {showSubChapters &&
-        props.chapter.subChapters.map((subChapter) => (
+        props.chapter.subChapters.map((subChapter, idx) => (
           <h5
-            key={subChapter.subChapterKey}
+            key={idx}
             onClick={() => props.changeSubChapter(subChapter)}
             style={{
               color:

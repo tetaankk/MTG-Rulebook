@@ -10,11 +10,18 @@ export default function SearchFunction({ rules, toSearch }) {
   const printResults = () => {
     return (
       <div>
-        <Header text={searchResults.length+"\xa0results\xa0found\xa0for\xa0''"+toSearch+"''"} />
-        {searchResults.map((rule) => (
-            <p key={rule.ruleKey}>
-              {rule.ruleKey}. {rule.ruleContent}
-            </p>
+        <Header
+          text={
+            searchResults.length +
+            "\xa0results\xa0found\xa0for\xa0''" +
+            toSearch +
+            "''"
+          }
+        />
+        {searchResults.map((rule, idx) => (
+          <p key={idx}>
+            {rule.ruleKey}. {rule.ruleContent}
+          </p>
         ))}
       </div>
     );
