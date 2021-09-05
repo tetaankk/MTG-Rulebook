@@ -3,7 +3,9 @@ import React from "react";
 export default function Rules({ subChapter }) {
   return (
     <div>
-      <h2>{subChapter.subChapterKey+subChapter.subChapterContent}</h2>
+      <h2>
+        {subChapter.subChapterKey + "." + " " + subChapter.subChapterContent}
+      </h2>
       {subChapter.rules.map((rule) => (
         <div key={rule.ruleKey} className="rule">
           <p>

@@ -6,7 +6,8 @@ export default function TableOfContentsChapters(props) {
   return (
     <div>
       <h4 onClick={() => setShowSubChapters(!showSubChapters)}>
-        {showSubChapters ? "- " : "+"} {props.chapter.chapterKey+". "+props.chapter.chapterContent}
+        {showSubChapters ? "- " : "+"}{" "}
+        {props.chapter.chapterKey + ". " + props.chapter.chapterContent}
       </h4>
       {showSubChapters &&
         props.chapter.subChapters.map((subChapter) => (
@@ -15,12 +16,10 @@ export default function TableOfContentsChapters(props) {
             onClick={() => props.changeSubChapter(subChapter)}
             style={{
               color:
-                subChapter === props.currentSubChapter
-                  ? "orange"
-                  : "inherit",
+                subChapter === props.currentSubChapter ? "orange" : "inherit",
             }}
           >
-            {subChapter.subChapterKey}{subChapter.subChapterContent}
+            {subChapter.subChapterKey}. {subChapter.subChapterContent}
           </h5>
         ))}
     </div>

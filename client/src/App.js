@@ -15,7 +15,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://magicrulebook.herokuapp.com/rules")
+      .get("http://localhost:5000/rules")
       .then((res) => setRules(res.data))
       .catch((error) => console.log(error));
   }, []);
@@ -26,8 +26,8 @@ function App() {
 
   const handleEmptySearch = (event) => {
     setToSearch("");
-  }
-  
+  };
+
   const handleReset = (event) => {
     event.preventDefault();
     setToSearch("");
@@ -36,17 +36,17 @@ function App() {
   const handleSubChapterChange = (subChapter) => {
     setCurrentSubChapter(subChapter);
     setToSearch("");
-  }
+  };
 
   return (
     <div className="App">
       <Header text="Rulebook&nbsp;for&nbsp;Magic:&nbsp;The&nbsp;Gathering" />
       <div className="ruleBook">
-        <TableOfContents 
-          rules={rules} 
-          handleEmptySearch={handleEmptySearch} 
-          handleSubChapterChange={handleSubChapterChange} 
-          currentSubChapter={currentSubChapter} 
+        <TableOfContents
+          rules={rules}
+          handleEmptySearch={handleEmptySearch}
+          handleSubChapterChange={handleSubChapterChange}
+          currentSubChapter={currentSubChapter}
         />
         <div className="rules">
           <SearchBar
